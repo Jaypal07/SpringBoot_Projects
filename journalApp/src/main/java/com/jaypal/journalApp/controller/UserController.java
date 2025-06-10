@@ -1,5 +1,6 @@
 package com.jaypal.journalApp.controller;
 
+import com.jaypal.journalApp.entity.JournalEntry;
 import com.jaypal.journalApp.entity.User;
 import com.jaypal.journalApp.repository.UserRepository;
 import com.jaypal.journalApp.service.UserService;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -34,8 +36,17 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = authentication.getName();
         User userInDb = userService.findByUserName(username);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
+        if (userInDb != null) {
+            userInDb.setUsername(!user.getUsername().isEmpty() ? user.getUsername() : userInDb.getUsername());
+            userInDb.setPassword(!user.getPassword().isEmpty() ? user.getPassword() : userInDb.getPassword());
+            userInDb.setRoles(!user.getRoles().isEmpty() ? user.getRoles() : userInDb.getRoles());
+            userService.saveUser(userInDb);
+            return new ResponseEntity<>(userInDb, HttpStatus.OK);
+        } else {
+
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
     }
 
     @DeleteMapping
@@ -44,6 +55,5 @@ public class UserController {
         userRepository.deleteByUsername(authentication.getName());
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
 
 }

@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: Journal App
+  data:
+    mongodb:
+      uri: mongodb+srv://jaypalkoli413:Jaypal%40%23%244790@cluster0.ca3zp7a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
+      database: journaldb
+      auto-index-creation: true
+
+server:
+  servlet:
+    context-path: /journal
