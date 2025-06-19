@@ -1,5 +1,6 @@
 package com.jaypal.journalApp.controller;
 
+import com.jaypal.journalApp.cache.AppCache;
 import com.jaypal.journalApp.entity.User;
 import com.jaypal.journalApp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,5 +30,13 @@ public class AdminController {
     public ResponseEntity<?> createAdmin(@RequestBody User user) {
         userService.saveAdmin(user);
         return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+    @Autowired
+    private AppCache appCache;
+
+    @GetMapping("/clear-app-cache")
+    public void clearCache() {
+        appCache.init();
     }
 }

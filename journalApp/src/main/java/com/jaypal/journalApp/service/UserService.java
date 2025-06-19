@@ -5,6 +5,8 @@ import com.jaypal.journalApp.entity.User;
 import com.jaypal.journalApp.repository.UserRepository;
 import lombok.NonNull;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -27,11 +29,17 @@ public class UserService {
         return password != null && password.matches("^\\$2[aby]\\$.{56}$");
     }
 
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
 
     public void saveNewUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
-        user.setRoles(Arrays.asList("USER"));
-        userRepository.save(user);
+        try {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(Arrays.asList("USER"));
+            userRepository.save(user);
+        } catch (Exception e) {
+            logger.error("Error occured for {} : ", user.getUsername(), e);
+        }
     }
 
     public void saveUser(User user) {
@@ -42,9 +50,11 @@ public class UserService {
     }
 
     public void saveAdmin(User user) {
+
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(Arrays.asList("USER", "ADMIN"));
         userRepository.save(user);
+
     }
 
 

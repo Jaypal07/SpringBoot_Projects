@@ -6,7 +6,35 @@ spring:
       uri: mongodb+srv://jaypalkoli413:Jaypal%40%23%244790@cluster0.ca3zp7a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
       database: journaldb
       auto-index-creation: true
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: kolijaypal77@gmail.com
+    password: gsoa zmrh abal gziw
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+  redis:
+    host: redis-13480.c212.ap-south-1-1.ec2.redns.redis-cloud.com
+    port: 13480
+    username: default
+    password: Zmc921daGBdS23NKbsjJxtv3Nbnbq71l
+#    ssl: true
+
 
 server:
   servlet:
     context-path: /journal
+
+weather:
+  api:
+    key: 279980b76acd17225a1a2382015002ff
+
+logging:
+  level:
+    org.springframework.data.redis: DEBUG
+    io.lettuce.core: DEBUG
