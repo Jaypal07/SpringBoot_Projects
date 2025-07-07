@@ -36,6 +36,7 @@ public class PublicController {
 
     @GetMapping("/health-check")
     public ResponseEntity<String> healthCheck() {
+        System.out.println("health-check");
         return ResponseEntity.ok("ok");
     }
 

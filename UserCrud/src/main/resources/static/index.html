@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>User CRUD App</title>
+    <link rel="stylesheet" href="styles.css"/>
+    <script src="script.js" defer></script>
+</head>
+<body>
+<div class="container">
+    <h1>User CRUD Operations</h1>
+
+    <div class="message" id="messageBox"></div>
+
+    <section>
+        <h2>Add User</h2>
+        <input id="addFirstName" placeholder="First Name" />
+        <input id="addLastName" placeholder="Last Name" />
+        <input id="addEmail" placeholder="Email" />
+        <button onclick="addUser()">Add User</button>
+    </section>
+
+    <section>
+        <h2>Update User</h2>
+        <input id="updateId" placeholder="User ID" />
+        <input id="updateFirstName" placeholder="New First Name" />
+        <input id="updateLastName" placeholder="New Last Name" />
+        <input id="updateEmail" placeholder="New Email" />
+        <button onclick="updateUser()">Update User</button>
+    </section>
+
+    <section>
+        <h2>Delete User</h2>
+        <input id="deleteId" placeholder="User ID" />
+        <button onclick="deleteUser()">Delete User</button>
+    </section>
+
+    <section>
+        <h2>All Users</h2>
+        <button onclick="getAllUsers()">Get All Users</button>
+        <ul id="userList"></ul>
+    </section>
+</div>
+</body>
+</html>

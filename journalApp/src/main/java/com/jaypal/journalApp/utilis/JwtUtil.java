@@ -81,7 +81,7 @@ public class JwtUtil {
                 .header().empty().add("typ", "JWT")    // Set token type in header
                 .and()
                 .issuedAt(new Date(System.currentTimeMillis()))              // Token issue time
-                .expiration(new Date(System.currentTimeMillis() + 1000 * 60)) // Expiry in 1 minutes
+                .expiration(new Date(System.currentTimeMillis() + 1000 * 5 * 60)) // Expiry in 1 minutes
                 .signWith(getSigningKey())             // Sign with secret key
                 .compact();                            // Final JWT token string
     }
