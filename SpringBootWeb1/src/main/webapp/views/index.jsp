@@ -1,7 +1,7 @@
 <%@page language="java" %>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="Style.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/Style.css">
 </head>
     <body>
     <h1>Simple Calculator</h1>
